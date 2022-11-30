@@ -5,7 +5,7 @@ const state={
 }
 
 module.exports.connect=function(done){
-    const url='mongodb://localhost:27017'
+    const url='mongodb+srv://vishnu:Vytila%40321@cluster0.rpvdtrx.mongodb.net/?retryWrites=true&w=majority'
     const dbname='myshoppingdb'
 
 
