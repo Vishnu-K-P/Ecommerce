@@ -11,5 +11,13 @@ module.exports = {
         else {
             res.redirect('/login-register')
         }
+    },
+
+    verifynotLogin: (req, res, next) => {
+        if (req.session.loggedIn==false) {
+            next();
+        }
     }
+
+
 }

@@ -45,7 +45,44 @@ const homepage = async (req, res) => {
             })
         })
         }
-
+        
+        const allhome = async (req, res) => {
+            user = req.session.user
+            var cartcount
+            if (req.session.user) {
+                cartcount = await userhelper.getCartCount(req.session.user._id)
+            }
+        
+             
+    
+           
+           await adminhelper.ViewallProduct().then(async(products,count) => {
+            var product=products
+               /* var product =[]
+                for(var i=0;i<count;i++){
+                   product[i]= products[i]
+        
+                }*/
+        
+        
+                await adminhelper.viewCategory().then(async(category) => {
+                    await   adminhelper.viewBanner().then(async(banner) => {
+        
+        
+                        let rec = await adminhelper.recentProducts()
+        
+                               res.render('user/index', { product, category, user,banner, cartcount,rec });
+           
+        
+              
+           
+        
+                        })
+        
+                    })
+                })
+                }
+        
     
 
         
@@ -983,17 +1020,15 @@ let Total = totalAmount
         let couponResponse = await adminhelper. applyCoupon(req.body, user, date,totalAmount)
           console.log(couponResponse,"dfghjk");
         if (couponResponse.verify) {
-            if(response.test)
-                var discountAmount = (couponResponse.couponData.maxAmount* parseInt(couponResponse.couponData.value)) / 100
-            else
-             discountAmount = (totalAmount * parseInt(couponResponse.couponData.value)) / 100
+            let discountAmount = (totalAmount * parseInt(couponResponse.couponData.value)) / 100
+            if(discountAmount>parseInt(couponResponse.couponData.maxAmount))
+            discountAmount=parseInt(couponResponse.couponData.maxAmount)
             let amount = totalAmount - discountAmount
             couponResponse.discountAmount = Math.round(discountAmount)
             couponResponse.amount = Math.round(amount)
             res.json(couponResponse)
             console.log(couponResponse,"DFGHJKL");
-        }
-         else {
+        } else {
             couponResponse.Total = totalAmount
 
             // couponResponse.noCoupon = req.body.total
@@ -1003,8 +1038,6 @@ let Total = totalAmount
         }
     }
 }
-
-
 
 
 
@@ -1147,6 +1180,6 @@ module.exports = {
     changeproductquantity, postcheckout, deleteCart, orderplaced, verifyPayment, orderProducts,
     addressPage, postAddressAdd, getEditAddress, postEditAddress, addressdelete,
      PostCheckoutAddress, getCheckoutAddress, orderCancel,getallProducts,postCartclear,getEmptyCart,
-     postresendOtp,getChangePageuser,searchhome,PostapplyCoupon,PostremoveCoupon,useWallet,removeWalletUser,postRemoveWishProducts,getWishList,getAddtoWishList,cathome,ReturnOrder,getInvoice
+     postresendOtp,getChangePageuser,searchhome,PostapplyCoupon,PostremoveCoupon,useWallet,removeWalletUser,postRemoveWishProducts,getWishList,getAddtoWishList,cathome,ReturnOrder,getInvoice,allhome
 }
 

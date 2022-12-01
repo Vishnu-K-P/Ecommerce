@@ -1,6 +1,7 @@
 var express = require('express');
-const { getLogin, getLoginRegister, postSignup, postLogin, getproductsDetails, homepage, nodata, getcart, getcheckout, getOtp, confirmOtp, postOtp, getSignUp, postconfirmOtp, addtocart, logout, getProfile, changeproductquantity,  postcheckout, deleteCart, orderplaced, verifyPayment, orderProducts, addressPage, postAddressAdd, getEditAddress, postEditAddress, addressdelete, PostCheckoutAddress, getCheckoutAddress, orderCancel, getallProducts, postCartclear, getEmptyCart, searchhome,postresendOtp, getChangePageuser,PostapplyCoupon,PostremoveCoupon,useWallet,removeWalletUser,getWishList,getAddtoWishList,postRemoveWishProducts,cathome,ReturnOrder,getInvoice} = require('../controllers/userContollers');
+const { getLogin, getLoginRegister, postSignup, postLogin, getproductsDetails, homepage, nodata, getcart, getcheckout, getOtp, confirmOtp, postOtp, getSignUp, postconfirmOtp, addtocart, logout, getProfile, changeproductquantity,  postcheckout, deleteCart, orderplaced, verifyPayment, orderProducts, addressPage, postAddressAdd, getEditAddress, postEditAddress, addressdelete, PostCheckoutAddress, getCheckoutAddress, orderCancel, getallProducts, postCartclear, getEmptyCart, searchhome,postresendOtp, getChangePageuser,PostapplyCoupon,PostremoveCoupon,useWallet,removeWalletUser,getWishList,getAddtoWishList,postRemoveWishProducts,cathome,ReturnOrder,getInvoice,allhome} = require('../controllers/userContollers');
 const { verifyLogin } = require('../middlewares/verify');
+const { verifynotLogin } = require('../middlewares/verify');
 var router = express.Router();
 
 
@@ -10,7 +11,7 @@ router.get('/login', getLogin)
 
 router.post('/login', postLogin)
 
-router.get('/login-register', getLoginRegister)
+router.get('/login-register',verifynotLogin, getLoginRegister)
 
 router.get('/signup', getSignUp)
 
@@ -19,6 +20,8 @@ router.post('/signup', postSignup)
 router.get('/user-logout', logout)
 
 router.get('/',homepage)
+
+router.get('/allproducts',allhome)
 
 router.get('/productdetails/:id', getproductsDetails)
 

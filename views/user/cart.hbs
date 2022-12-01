@@ -67,80 +67,30 @@
 
 
 <body>
-  <!--  <div class="main-wrapper main-wrapper-2">
-        <div class="header-top d-none d-lg-block bg-gray">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-6">
-                        <div class="welcome-text">
-                            {{#if user}}
-                            <p>Welcome {{user.name}}</p>
-                            {{else}}
-                            <p> Welcome Please Login! </p>
-                            {{/if}}
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-6">
-                        <div class="language-currency-wrap">
-                            <div class="currency-wrap border-style">
-                                <a class="currency-active" href="#">Account<i class=" ti-angle-down "></i></a>
-                                <div class="currency-dropdown">
-                                    <ul>
-                                        <li><a href="#"> Profile</a></li>
-                                        <li><a href="#">Settings</a></li>
-                                        <li><a href="/user-logout">Log Out </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="language-wrap">
-                                <a class="language-active" href="#"><img src="assets/images/icon-img/flag.png" alt="">
-                                    English <i class=" ti-angle-down "></i></a>
-                                <div class="language-dropdown">
-                                    <ul>
-                                        <li><a href="#"><img src="assets/images/icon-img/flag.png" alt="">English </a>
-                                        </li>
-                                        <li><a href="#"><img src="assets/images/icon-img/spanish.png" alt="">Spanish</a>
-                                        </li>
-                                        <li><a href="#"><img src="assets/images/icon-img/arabic.png" alt="">Arabic </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-
-        <header class="header-area header-responsive-padding header-height-1"
-            style="min-height: 110px; margin-top: 20px;">
-            <div class="header-top d-none d-lg-block bg-gray-5">
-                <div class="container">
-                    <div class="row align-items-center">
-
-                    </div>
-                </div>
-            </div>
+   <div class="main-wrapper main-wrapper-2">
+      <header class="header-area header-responsive-padding header-height-1"
+            style="min-height: 70px; ">
+        
             <div class="header-bottom sticky-bar bg-light text-white " style="min-height: 130px;">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row align-items-center">
-                        <div class="col-lg-3 col-md-6 col-6">
+                        <div class="col-lg-2 col-md-6 col-6">
                             <div class="logo">
                                 <a href="/login-register"><img src="/User/images/logo/looo-removebg-preview.png"
-                                        alt="logo" style="margin-top: 15px;"></a>
+                                        alt="logo" style="height:70px;"></a>
                             </div>
                         </div>
-                        <div class="col-lg-6 d-none d-lg-block">
+                        <div class="col-lg-5 d-none d-lg-block text-color-orange">
                             <div class="main-menu text-center ">
                                 <nav>
                                     <ul>
-                                        <li><a href="/">HOME</a>
+                                        <li><a href="/" style="color:orange">HOME</a>
 
                                         </li>
 
 
 
-                                        <li><a href=""> SHOP BY &nbsp; CATEGORY</a>
+                                        <li><a href=""style="color:orange"> SHOP BY &nbsp; CATEGORY</a>
 
                                           <ul class="sub-menu-style">
                                                 {{#each category}}
@@ -149,37 +99,40 @@
                                             </ul>
 
                                         </li>
+ <li><a href="/allproducts"style="color:orange">ALL PRODUCTS</a>
 
-
-                                        <li class="" style="font-size: 15px;"><a href=""></a>
                                         </li>
+                                         <li><a href="/"style="color:orange">NEW ARRIVALS</a>
+
+                                        </li>
+
                                     </ul>
                                 </nav>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-6 ">
-                            <div class="header-action-wrap">
-                                <div class="header-action-style header-search-1">
-                                    <a class="search-toggle" href="#">
+                        <div class="col-lg-5 col-md-6 col-6 ms-0">
+                            <div class="header-action-wrap ms-0">
+                                <div class="header-action-style header-search-1 ms-0">
+                                    <!--<a class="search-toggle" href="#">
                                        <!-- <i class="pe-7s-search s-open"></i>
-                                        <i class="pe-7s-close s-close"></i>-->
-                                    </a>
-                                   <form action="/search/?search=''/" class="d-flex ms-auto">
+                                        <i class="pe-7s-close s-close"></i>
+                                    </a>-->
+                                   <form action="/search/?search=''/" class="d-flex ">
                                     <!--<input placeholder="Search products…" type="text"  value="{{key}}" >
                                             <button type="submit" class="button-search"> <i class="pe-7s-search"></i></button>-->
-        <input type="search"  class="form-control  me-2 w-auto" name="search" placeholder="Search" value="{{key}}" aria-label="Search">
-          <button type="submit"><i class="fa fa-search"></i></button>
+        <input type="search"  class="form-control  ms-0 me-0 " name="search" placeholder="Search" value="{{key}}" aria-label="Search"style="color:orange;border-color:orange;width:200%;margin-left:-50px">
+          <button type="submit"style="border-color:orange;"><i class="pe-7s-search"></i></button>
       </form>
                                 </div>
-                                <div class="header-action-style d-flex gap-3 dropdown">
+                                <div class="header-action-style d-flex gap-3 dropdown ms-2">
 
                                     {{#if user}}
 
 
 
-                                    <a title="Login Register" href="/profile"><i class="pe-7s-user"></i></a>
+                                    <a title="Login Register" href="/profile"><i class="pe-7s-user"style="font-size: 2em;color:orange;"></i></a>
                                     {{else}}
-                                    <a title="Login Register" href="/login"><i class="pe-7s-user"></i></a>
+                                    <a title="Login Register" href="/login"><i class="pe-7s-user" style="font-size: 2em;color:orange"></i></a>
 
                                 </div>
 
@@ -188,11 +141,11 @@
 
 
 
-                                <div class="header-action-style">
-                                    <a title="Wishlist" href="/wishlist"><i class="pe-7s-like"></i></a>
+                                <div class="header-action-style ms-3">
+                                    <a title="Wishlist" href="/wishlist" ><i class="pe-7s-like" style="font-size: 2em;color:orange;"></i></a>
                                 </div>
                                 <div class="header-action-style header-action-cart">
-                                    <a class="cart-active" href="/cart"><i class="pe-7s-shopbag"></i>
+                                    <a class="cart-active" href="/cart"><i class="pe-7s-shopbag"style="font-size: 2em;color:orange"></i>
                                         {{#if user}}
                                         <span class="product-count bg-black" id="cart-count">{{cartcount}}</span>
                                     </a>
@@ -200,7 +153,7 @@
                                     <span class="product-count " id="cart-count"></span>
                                     {{/if}}
                                 </div>
-                                <div class="header-action-style d-block d-lg-none">
+                                <div class="header-action-style d-block d-lg-none ms-5">
                                     <a class="mobile-menu-active-button" href="/cart"><i class="pe-7s-menu"></i></a>
                                 </div>
 

@@ -1046,8 +1046,8 @@ module.exports = {
                     "payment_method": "paypal"
                 },
                 "redirect_urls": {
-                    return_url: "http://localhost:3000/ordersuccess",
-                    cancel_url: "http://localhost:3000/checkout/cancel"
+                    return_url: "https://laptopworld.tk:3000/ordersuccess",
+                    cancel_url: "https://laptopworld.tk:3000/checkout/cancel"
                 },
                 "transactions": [
                     {

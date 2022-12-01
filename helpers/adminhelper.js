@@ -108,7 +108,44 @@ module.exports = {
 
   },
 
+  ViewallProduct: () => {
 
+    return new Promise(async (resolve, reject) => {
+     
+
+      let categoryName = await db.get().collection(collection.PRODUCTCOLLECTION).aggregate([
+
+        {
+          $lookup: {
+
+            from: collection.CATEGORYCOLLECTION,
+            localField: 'category',
+            foreignField: '_id',
+            as: 'category'
+          }
+        },
+        {
+          $project: {
+            category: { $arrayElemAt: ['$category', 0] },
+            name: 1,
+            image: 1,
+            price: 1,
+            description: 1,
+            originalPrice: 1,
+            offerPercentage:1
+
+
+          }
+        }
+      ]).toArray()
+    
+      // console.log(categoryName, "2222222222222");
+     
+      resolve(categoryName)
+
+    })
+
+  },
   /* -------------------------------------------------------------------------- */
   /*                          admin side products view                          */
   /* -------------------------------------------------------------------------- */
@@ -2140,26 +2177,17 @@ salesMonthlyGraph: () => {
 
               resolve(response)
 
-              if (total <= coupon.maxAmount   ) {
+              if (total <= coupon.maxAmount) {
                 console.log('amountmax heloooo');
                 response.verifymaxAmount = true
                 //  response.Coupenused = false
 
                 resolve(response)
-                
-              }else if( total > coupon.maxAmount )
-              {
-                response.test=true
-                response.testamt=coupon.maxAmount
-                resolve(response)
-              }
-              
-              
-              
-              else
-              {
-                response.maxAmountMsg = 'Your maximum purchase should be' + coupon.maxAmount
-                response.maxAmount= true
+              } else {
+                response.verifyminAmount = true
+                response.verifymaxAmount = true
+                //response.maxAmountMsg = 'Your maximum purchase should be' + coupon.maxAmount
+                //response.maxAmount = true
                 // console.log(response.maxAmount,'resmaxamount');
                 resolve(response)
               }
@@ -2190,11 +2218,8 @@ salesMonthlyGraph: () => {
         resolve(response)
       }
 
-      if (response.dateValid && (response.verifymaxAmount  || response.test) && response.verifyminAmount) {
-     
-       
+      if (response.dateValid && response.verifymaxAmount && response.verifyminAmount) {
         response.verify = true
-       
         // db.get().collection(collection.COUPON_COLLECTION).updateOne({couponId:details.coupon},
         //     {
         //         $push:{users:objectId(userId)}
